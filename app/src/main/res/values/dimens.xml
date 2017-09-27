@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_title">30dp</dimen>
+    <dimen name="text_sub_title">20dp</dimen>
+    <dimen name="text_des">16dp</dimen>
+    <dimen name="text_bar">23dp</dimen>
+    <dimen name="text_indent">8dp</dimen>
+</resources>

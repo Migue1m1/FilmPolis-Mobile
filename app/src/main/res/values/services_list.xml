@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="services_array">
+        <item>Movies</item>
+        <item>Actors</item>
+        <item>Directors</item>
+    </string-array>
+</resources>

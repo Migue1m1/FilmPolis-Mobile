@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">FilmPolis</string>
+    <string name="hint_search_movie">Type a title...</string>
+    <string name="hint_search_actor">Type a name...</string>
+    <string name="hint_search_director">Type a name...</string>
+
+    <string name="sub_imdbId">Imdb Id: </string>
+    <string name="sub_released">Released: </string>
+    <string name="sub_rated">Rated: </string>
+    <string name="sub_studio">Studio: </string>
+    <string name="sub_genre">Genre: </string>
+    <string name="sub_language">Language: </string>
+    <string name="sub_runtime">Runtime: </string>
+    <string name="sub_name">Actors: </string>
+    <string name="sub_directors">Directors: </string>
+    <string name="sub_description">Description: </string>
+    <string name="sub_age">Age:</string>
+    <string name="sub_biography">Biography:</string>
+    <string name="sub_birthday">Birth Day:</string>
+    <string name="sub_deathday">Death Day:</string>
+    <string name="sub_birthplace">Birth Place:</string>
+    <string name="sub_gender">Gender:</string>
 </resources>
