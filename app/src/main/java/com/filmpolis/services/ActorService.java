@@ -8,6 +8,7 @@ import com.filmpolis.adapters.SuggestionsAdapter;
 import com.filmpolis.models.Actor;
 import com.filmpolis.models.Suggestion;
 import com.filmpolis.utils.ActorServiceType;
+import com.filmpolis.utils.HttpStatusCode;
 import com.filmpolis.utils.Utils;
 
 import org.apache.http.HttpResponse;
@@ -103,7 +104,7 @@ public class ActorService extends AsyncTask<String, Void, String> {
                 JSONObject result = new JSONObject(res); // Convert
 
                 switch (result.getInt("status")) {
-                    case 200:
+                    case HttpStatusCode.OK:
                         JSONArray data = result.getJSONArray("data");
                         for (int i = 0; i < data.length(); i++) {
                             Suggestion suggestion = new Suggestion();
@@ -112,7 +113,7 @@ public class ActorService extends AsyncTask<String, Void, String> {
                             actorSuggestions.add(suggestion);
                         }
                         break;
-                    case 404:
+                    case HttpStatusCode.NOT_FOUND:
                         break;
                 }
             }
@@ -133,12 +134,12 @@ public class ActorService extends AsyncTask<String, Void, String> {
                 JSONObject result = new JSONObject(res); // Convert
 
                 switch (result.getInt("status")) {
-                    case 200:
+                    case HttpStatusCode.OK:
                         JSONObject data = result.getJSONObject("data");
                         actor = (Actor) Utils.jsonToStar(data, "Actor");
                         Log.e("Actor: ", actor.toString());
                         break;
-                    case 404:
+                    case HttpStatusCode.NOT_FOUND:
                         break;
                 }
             }

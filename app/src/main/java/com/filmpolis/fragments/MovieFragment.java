@@ -49,6 +49,7 @@ public class MovieFragment extends Fragment {
 
         ((TextView) view.findViewById(R.id.tv_title)).setTypeface(fontBold);
         ((TextView) view.findViewById(R.id.tv_description)).setTypeface(fontThin);
+        ((TextView) view.findViewById(R.id.tv_score)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_imdb_id)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_released)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_rated)).setTypeface(fontThin);
@@ -60,6 +61,7 @@ public class MovieFragment extends Fragment {
         ((TextView) view.findViewById(R.id.tv_actors)).setTypeface(fontThin);
 
         ((TextView) view.findViewById(R.id.tv_description_text)).setTypeface(fontThin);
+        ((TextView) view.findViewById(R.id.tv_score_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_imdb_id_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_released_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_rated_text)).setTypeface(fontThin);
@@ -67,5 +69,7 @@ public class MovieFragment extends Fragment {
         ((TextView) view.findViewById(R.id.tv_genre_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_language_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_runtime_text)).setTypeface(fontThin);
+        ((TextView) view.findViewById(R.id.tv_directors_text)).setTypeface(fontThin);
+        ((TextView) view.findViewById(R.id.tv_actors_text)).setTypeface(fontThin);
     }
 }

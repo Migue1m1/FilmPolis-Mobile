@@ -8,6 +8,7 @@ import android.util.Log;
 import com.filmpolis.adapters.SuggestionsAdapter;
 import com.filmpolis.models.Movie;
 import com.filmpolis.models.Suggestion;
+import com.filmpolis.utils.HttpStatusCode;
 import com.filmpolis.utils.MovieServiceType;
 import com.filmpolis.utils.Utils;
 
@@ -104,7 +105,7 @@ public class MovieService extends AsyncTask<String, Void, String> {
                 JSONObject result = new JSONObject(res); // Convert
 
                 switch (result.getInt("status")) {
-                    case 200:
+                    case HttpStatusCode.OK:
                         JSONArray data = result.getJSONArray("data");
                         for (int i = 0; i < data.length(); i++) {
                             Suggestion suggestion = new Suggestion();
@@ -113,7 +114,7 @@ public class MovieService extends AsyncTask<String, Void, String> {
                             movieSuggestions.add(suggestion);
                         }
                         break;
-                    case 404:
+                    case HttpStatusCode.NOT_FOUND:
                         break;
                 }
             }
@@ -134,12 +135,12 @@ public class MovieService extends AsyncTask<String, Void, String> {
                 JSONObject result = new JSONObject(res); // Convert
 
                 switch (result.getInt("status")) {
-                    case 200:
+                    case HttpStatusCode.OK:
                         JSONObject data = result.getJSONObject("data");
                         movie = Utils.jsonToMovie(data);
                         Log.e("Movie: ", movie.toString());
                         break;
-                    case 404:
+                    case HttpStatusCode.NOT_FOUND:
                         break;
                 }
             }

@@ -93,7 +93,7 @@ public class Director extends BaseObservable implements Serializable {
     }
 
     public void setBiography(String biography) {
-        this.biography = biography;
+        this.biography = "  " + biography;
         notifyPropertyChanged(BR.biography);
     }
 

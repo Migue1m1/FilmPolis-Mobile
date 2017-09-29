@@ -23,6 +23,8 @@ public class Movie extends BaseObservable implements Serializable {
     private String runtime;
     private String imageURL;
     private String imdbRating;
+    private String actors;
+    private String directors;
 
     public Movie(String title, String imdbId) {
         this.title = title;
@@ -84,6 +86,16 @@ public class Movie extends BaseObservable implements Serializable {
         return imdbRating;
     }
 
+    @Bindable
+    public String getActors() {
+        return actors;
+    }
+
+    @Bindable
+    public String getDirectors() {
+        return directors;
+    }
+
     public void setTitle(String title) {
         this.title = title;
         notifyPropertyChanged(BR.title);
@@ -110,7 +122,7 @@ public class Movie extends BaseObservable implements Serializable {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = "  " + description;
         notifyPropertyChanged(BR.description);
     }
 
@@ -132,6 +144,16 @@ public class Movie extends BaseObservable implements Serializable {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
         notifyPropertyChanged(BR.imageURL);
+    }
+
+    public void setActors(String actors) {
+        this.actors = "  " + actors;
+        notifyPropertyChanged(BR.actors);
+    }
+
+    public void setDirectors(String directors) {
+        this.directors = "  " + directors;
+        notifyPropertyChanged(BR.directors);
     }
 
     public void setImdbRating(String imdbRating) {

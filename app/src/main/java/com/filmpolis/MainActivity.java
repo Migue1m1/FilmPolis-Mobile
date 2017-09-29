@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
 
         initGUI();
-
+        android.util.Log.e("wfd", android.text.format.DateFormat.format("yyyy-MM-dd", new java.util.Date().getTime()).toString());
     }
 
     private void initGUI() {

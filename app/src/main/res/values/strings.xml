@@ -4,20 +4,21 @@
     <string name="hint_search_actor">Type a name...</string>
     <string name="hint_search_director">Type a name...</string>
 
-    <string name="sub_imdbId">Imdb Id: </string>
-    <string name="sub_released">Released: </string>
-    <string name="sub_rated">Rated: </string>
-    <string name="sub_studio">Studio: </string>
-    <string name="sub_genre">Genre: </string>
-    <string name="sub_language">Language: </string>
-    <string name="sub_runtime">Runtime: </string>
-    <string name="sub_name">Actors: </string>
-    <string name="sub_directors">Directors: </string>
-    <string name="sub_description">Description: </string>
-    <string name="sub_age">Age:</string>
-    <string name="sub_biography">Biography:</string>
-    <string name="sub_birthday">Birth Day:</string>
-    <string name="sub_deathday">Death Day:</string>
-    <string name="sub_birthplace">Birth Place:</string>
-    <string name="sub_gender">Gender:</string>
+    <string name="sub_imdbId">imdb id</string>
+    <string name="sub_released">released</string>
+    <string name="sub_rated">rated</string>
+    <string name="sub_studio">studio</string>
+    <string name="sub_genre">genre</string>
+    <string name="sub_language">language</string>
+    <string name="sub_runtime">runtime</string>
+    <string name="sub_score">score</string>
+    <string name="sub_actors">actors</string>
+    <string name="sub_directors">directors</string>
+    <string name="sub_description">description</string>
+    <string name="sub_age">age</string>
+    <string name="sub_biography">biography</string>
+    <string name="sub_birthday">birth day</string>
+    <string name="sub_deathday">death day</string>
+    <string name="sub_birthplace">birth place</string>
+    <string name="sub_gender">gender</string>
 </resources>
