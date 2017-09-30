@@ -1,13 +1,14 @@
 package com.filmpolis.services;
 
 import android.app.Activity;
-import android.database.MatrixCursor;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.filmpolis.R;
 import com.filmpolis.adapters.SuggestionsAdapter;
 import com.filmpolis.models.Movie;
 import com.filmpolis.models.Suggestion;
+import com.filmpolis.singleton.ViewSnackBar;
 import com.filmpolis.utils.HttpStatusCode;
 import com.filmpolis.utils.MovieServiceType;
 import com.filmpolis.utils.Utils;
@@ -26,6 +27,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 /**
  * Created by Miguel on 15/09/2017.
  */
@@ -41,7 +44,10 @@ public class MovieService extends AsyncTask<String, Void, String> {
     private HttpGet httpget;
     private HttpResponse response;
     private Activity activity;
+    private AVLoadingIndicatorView progressLoading;
+    private final ViewSnackBar viewSnackBar = ViewSnackBar.getInstance();
     private Movie movie;
+    private boolean err;
 
     public MovieService (HashMap<String, Object> params) {
         activity = (Activity) params.get("handleActivity");
@@ -53,6 +59,10 @@ public class MovieService extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        if (option == MovieServiceType.GET_BY_TITLE) {
+            progressLoading = (AVLoadingIndicatorView) activity.findViewById(R.id.avi_loading);
+            progressLoading.show();
+        }
     }
 
     @Override
@@ -79,18 +89,25 @@ public class MovieService extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        switch (option) {
-            case GET_SUGGESTIONS:
-                searchViewAdapter.changeCursor(Utils.jsonToCursor(movieSuggestions));
-                break;
-            case GET_BY_TITLE:
-                Utils.changueActivity(activity, "Movie", movie);
-                break;
-            case GET_BY_IMDB:
-                break;
-            case ADD_MOVIE:
-                break;
+        if (err) {
+            Utils.hideSoftKeyBoard(activity);
+            viewSnackBar.viewSnackBar(activity.findViewById(R.id.searchView),
+                    activity.getResources().getString(R.string.NO_INTERNET));
         }
+        else
+            switch (option) {
+                case GET_SUGGESTIONS:
+                    searchViewAdapter.changeCursor(Utils.jsonToCursor(movieSuggestions));
+                    break;
+                case GET_BY_TITLE:
+                    progressLoading.hide();
+                    Utils.changueActivity(activity, "Movie", movie);
+                    break;
+                case GET_BY_IMDB:
+                    break;
+                case ADD_MOVIE:
+                    break;
+            }
     }
 
     private void findWithSuggestions(String text) {
@@ -119,6 +136,7 @@ public class MovieService extends AsyncTask<String, Void, String> {
                 }
             }
         } catch (Exception e) {
+            err = true;
             Log.e("Error: ", e.getMessage());
         }
     }
@@ -145,6 +163,7 @@ public class MovieService extends AsyncTask<String, Void, String> {
                 }
             }
         } catch (Exception e) {
+            err = true;
             Log.e("Error: ", e.getMessage());
         }
     }

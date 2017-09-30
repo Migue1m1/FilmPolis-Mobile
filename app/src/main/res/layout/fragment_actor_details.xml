@@ -35,10 +35,8 @@
                         android:gravity="center"
                         android:textSize="@dimen/text_title"
                         android:text="@{actor.name}"
-                        android:textColor="@color/colorBlack"/>
+                        android:textColor="@color/colorWhite"/>
                 </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,10 +73,9 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:text="@string/sub_age"
-                                android:layout_marginTop="6dp"
                                 android:layout_marginLeft="2dp"
                                 android:textSize="@dimen/text_sub_title"
-                                android:textColor="@color/colorBlack"
+                                android:textColor="@color/colorWhite"
                                 />
                             <TextView
                                 android:id="@+id/tv_age_text"
@@ -86,33 +83,33 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:text="@{actor.age}"
-                                android:layout_marginTop="6dp"
                                 android:layout_marginLeft="@dimen/text_indent"
-                                android:textSize="@dimen/text_des" />
+                                android:textSize="@dimen/text_des"
+                                android:textColor="@color/colorLightGray"/>
                             <TextView
                                 android:id="@+id/tv_biography"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:text="@string/sub_biography"
-                                android:layout_marginTop="6dp"
                                 android:layout_marginLeft="2dp"
                                 android:textSize="@dimen/text_sub_title"
-                                android:textColor="@color/colorBlack"/>
-                            <TextView
+                                android:textColor="@color/colorWhite"/>
+                            <EditText
                                 android:id="@+id/tv_biography_text"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="233dp"
                                 android:gravity="center_vertical"
                                 android:text="@{actor.biography}"
-                                android:layout_marginTop="6dp"
                                 android:layout_marginLeft="@dimen/text_indent"
-                                android:textSize="@dimen/text_des" />
+                                android:textSize="@dimen/text_des"
+                                android:editable="false"
+                                android:scrollbarStyle="insideInset"
+                                android:scrollbars="vertical"
+                                android:textColor="@color/colorLightGray"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,20 +129,19 @@
                                 android:id="@+id/tv_birthday"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:gravity="center_vertical"
                                 android:text="@string/sub_birthday"
                                 android:textSize="@dimen/text_sub_title"
-                                android:textColor="@color/colorBlack" />
+                                android:textColor="@color/colorWhite" />
                             <TextView
                                 android:id="@+id/tv_birthday_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:gravity="center_vertical"
                                 android:text="@{actor.birthDay}"
                                 android:textSize="@dimen/text_des"
-                                android:layout_marginLeft="@dimen/text_indent"/>
+                                android:layout_marginLeft="@dimen/text_indent"
+                                android:textColor="@color/colorLightGray"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="0dp"
@@ -160,19 +156,18 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:text="@string/sub_deathday"
-                                android:layout_marginTop="6dp"
                                 android:layout_marginLeft="2dp"
                                 android:textSize="@dimen/text_sub_title"
-                                android:textColor="@color/colorBlack"/>
+                                android:textColor="@color/colorWhite"/>
                             <TextView
                                 android:id="@+id/tv_deathday_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:text="@{actor.deathDay}"
-                                android:layout_marginTop="6dp"
                                 android:layout_marginLeft="@dimen/text_indent"
-                                android:textSize="@dimen/text_des" />
+                                android:textSize="@dimen/text_des"
+                                android:textColor="@color/colorLightGray"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -193,7 +188,7 @@
                                 android:gravity="center_vertical"
                                 android:text="@string/sub_birthplace"
                                 android:textSize="@dimen/text_sub_title"
-                                android:textColor="@color/colorBlack"/>
+                                android:textColor="@color/colorWhite"/>
                             <TextView
                                 android:id="@+id/tv_birthplace_text"
                                 android:layout_width="match_parent"
@@ -201,7 +196,8 @@
                                 android:gravity="center_vertical"
                                 android:text="@{actor.birthPlace}"
                                 android:textSize="@dimen/text_des"
-                                android:layout_marginLeft="@dimen/text_indent"/>
+                                android:layout_marginLeft="@dimen/text_indent"
+                                android:textColor="@color/colorLightGray"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="0dp"
@@ -217,7 +213,7 @@
                                 android:gravity="center_vertical"
                                 android:text="@string/sub_gender"
                                 android:textSize="@dimen/text_sub_title"
-                                android:textColor="@color/colorBlack"/>
+                                android:textColor="@color/colorWhite"/>
                             <TextView
                                 android:id="@+id/tv_gender_text"
                                 android:layout_width="match_parent"
@@ -225,10 +221,10 @@
                                 android:gravity="center_vertical"
                                 android:text="@{actor.gender}"
                                 android:textSize="@dimen/text_sub_title"
-                                android:layout_marginLeft="@dimen/text_indent"/>
+                                android:layout_marginLeft="@dimen/text_indent"
+                                android:textColor="@color/colorLightGray"/>
                         </LinearLayout>
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -242,7 +238,7 @@
                             android:gravity="center_vertical"
                             android:text="@string/sub_imdbId"
                             android:textSize="@dimen/text_sub_title"
-                            android:textColor="@color/colorBlack"/>
+                            android:textColor="@color/colorWhite"/>
                         <TextView
                             android:id="@+id/tv_imdb_id_text"
                             android:layout_width="match_parent"
@@ -250,9 +246,9 @@
                             android:gravity="center_vertical"
                             android:text="@{actor.imdbId}"
                             android:textSize="@dimen/text_des"
-                            android:layout_marginLeft="@dimen/text_indent"/>
+                            android:layout_marginLeft="@dimen/text_indent"
+                            android:textColor="@color/colorLightGray"/>
                     </LinearLayout>
-
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

@@ -6,29 +6,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.filmpolis.MainActivity"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
     <LinearLayout
+        android:id="@+id/ll_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerVertical="true">
-        <Spinner
-            android:id="@+id/sp_service"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textAlignment="textEnd"
-            />
+            android:layout_height="match_parent">
+            <Spinner
+                android:id="@+id/sp_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textAlignment="textEnd"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
         <android.support.v7.widget.SearchView
             android:id="@+id/searchView"
+            app:defaultQueryHint="@string/hint_search_movie"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/colorPrimaryLight"
-            app:defaultQueryHint="@string/hint_search_movie"
-            >
+            android:background="@color/colorPrimary">
         </android.support.v7.widget.SearchView>
     </LinearLayout>
-
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_body"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"/>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorName="BallScaleRippleMultipleIndicator"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/colorLightGray"
+        android:visibility="gone" />
 </RelativeLayout>

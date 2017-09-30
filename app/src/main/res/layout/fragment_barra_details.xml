@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_bar"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorWhite"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 

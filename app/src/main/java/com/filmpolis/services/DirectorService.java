@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.filmpolis.R;
 import com.filmpolis.adapters.SuggestionsAdapter;
 import com.filmpolis.models.Director;
 import com.filmpolis.models.Suggestion;
 import com.filmpolis.utils.DirectorServiceType;
 import com.filmpolis.utils.HttpStatusCode;
 import com.filmpolis.utils.Utils;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -40,6 +42,7 @@ public class DirectorService extends AsyncTask<String, Void, String> {
     private HttpGet httpget;
     private HttpResponse response;
     private Activity activity;
+    private AVLoadingIndicatorView progressLoading;
     private Director director;
 
     public DirectorService (HashMap<String, Object> params) {
@@ -52,6 +55,10 @@ public class DirectorService extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        if (option == DirectorServiceType.GET_BY_NAME) {
+            progressLoading = (AVLoadingIndicatorView) activity.findViewById(R.id.avi_loading);
+            progressLoading.show();
+        }
     }
 
     @Override
@@ -83,6 +90,7 @@ public class DirectorService extends AsyncTask<String, Void, String> {
                 searchViewAdapter.changeCursor(Utils.jsonToCursor(directorSuggestions));
                 break;
             case GET_BY_NAME:
+                progressLoading.hide();
                 Utils.changueActivity(activity, "Director", director);
                 break;
             case GET_BY_IMDB:

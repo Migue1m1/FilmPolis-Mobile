@@ -33,7 +33,11 @@ public class SuggestionsAdapter extends SimpleCursorAdapter {
         ImageView imgSuggestion = (ImageView) view.findViewById(R.id.suggestion_icon);
         if (!cursor.getString(1).toString().isEmpty()
                 && !cursor.getString(1).toString().equals("N/A"))
-            Picasso.with(view.getContext()).load(cursor.getString(1).toString()).into(imgSuggestion);
+            Picasso.with(view.getContext())
+                    .load(cursor.getString(1).toString())
+                    .error(R.mipmap.ic_not_image)
+                    .placeholder(R.mipmap.ic_not_image)
+                    .into(imgSuggestion);
 
         TextView tvSuggestion = (TextView) view.findViewById(R.id.suggestion_text);
         tvSuggestion.setText(cursor.getString(2));

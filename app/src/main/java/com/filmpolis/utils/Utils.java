@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.MatrixCursor;
 import android.text.format.DateFormat;
+import android.view.inputmethod.InputMethodManager;
 
 import com.filmpolis.DetailsActivity;
 import com.filmpolis.MainActivity;
@@ -22,6 +23,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 /**
  * Created by Miguel on 20/09/2017.
  */
@@ -29,9 +32,9 @@ import java.util.List;
 public class Utils {
     public static final String[] SUGGESTIONS_COLUMS = new String[]{"_id", "icon", "suggestion"};
 
-    public static final String URL_API_ACTORS = "http://192.168.0.103:9090/api-gateway/actors";
-    public static final String URL_API_MOVIES = "http://192.168.0.103:9090/api-gateway/movies";
-    public static final String URL_API_DIRECTORS = "http://192.168.0.103:9090/api-gateway/directors";
+    public static final String URL_API_ACTORS = "http://192.168.0.106:9090/api-gateway/actors";
+    public static final String URL_API_MOVIES = "http://192.168.0.106:9090/api-gateway/movies";
+    public static final String URL_API_DIRECTORS = "http://192.168.0.106:9090/api-gateway/directors";
 
     public static final String[] FONTPATH =
             {  "fonts/ZonaPro-Thin.ttf", "fonts/ZonaPro-Bold.ttf" };
@@ -68,6 +71,15 @@ public class Utils {
         movie.setDirectors(rolesToString(json.getJSONArray("directors"), "Directors"));
         movie.setActors(rolesToString(json.getJSONArray("actors"), "Actors"));
         return movie;
+    }
+
+    /*** Ocultar teclado ***/
+    public static void hideSoftKeyBoard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE);
+
+        if(imm.isAcceptingText()) {
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     public static MatrixCursor jsonToCursor (List<Suggestion> movieSuggestions) {

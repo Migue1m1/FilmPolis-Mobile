@@ -5,7 +5,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:maxLines="1"
     android:ellipsize="marquee"
-    android:textColor="@color/colorBlack"
+    android:textColor="@color/colorLightGray"
     android:textAlignment="center">
 
 </CheckedTextView>

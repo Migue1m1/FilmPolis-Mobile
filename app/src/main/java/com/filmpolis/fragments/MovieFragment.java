@@ -5,8 +5,10 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.filmpolis.R;
@@ -60,7 +62,7 @@ public class MovieFragment extends Fragment {
         ((TextView) view.findViewById(R.id.tv_directors)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_actors)).setTypeface(fontThin);
 
-        ((TextView) view.findViewById(R.id.tv_description_text)).setTypeface(fontThin);
+        ((EditText) view.findViewById(R.id.tv_description_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_score_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_imdb_id_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_released_text)).setTypeface(fontThin);
@@ -71,5 +73,20 @@ public class MovieFragment extends Fragment {
         ((TextView) view.findViewById(R.id.tv_runtime_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_directors_text)).setTypeface(fontThin);
         ((TextView) view.findViewById(R.id.tv_actors_text)).setTypeface(fontThin);
+
+        view.findViewById(R.id.tv_description_text)
+            .setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                switch (event.getAction() & MotionEvent.ACTION_MASK){
+                    case MotionEvent.ACTION_UP:
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 }

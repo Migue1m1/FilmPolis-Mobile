@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,17 +28,22 @@ import com.filmpolis.utils.DirectorServiceType;
 import com.filmpolis.utils.MovieServiceType;
 import com.filmpolis.utils.ServiceState;
 import com.filmpolis.utils.Utils;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+                                                               SearchView.OnQueryTextListener,
                                                                SearchView.OnSuggestionListener,
-                                                               AdapterView.OnItemSelectedListener{
+                                                               AdapterView.OnItemSelectedListener {
+    private static ServiceState appState = ServiceState.MOVIES;
     private SearchView searchView;
     private SuggestionsAdapter searchViewAdapter;
     private Typeface font;
     private Spinner spinner;
-    private static ServiceState appState = ServiceState.MOVIES;
+    private MovieService movieService;
+    private ActorService actorService;
+    private DirectorService directorService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
 
         initGUI();
-        android.util.Log.e("wfd", android.text.format.DateFormat.format("yyyy-MM-dd", new java.util.Date().getTime()).toString());
+
+        movieService = null;
+        actorService = null;
+        directorService = null;
     }
 
     private void initGUI() {
@@ -63,14 +72,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         searchView.findViewById(android.support.v7.appcompat.R.id.search_plate)
                 .setBackgroundResource(R.drawable.search_view_rounded_background);
         ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
-                .setTextColor(Color.BLACK);
+                .setTextColor(getResources().getColor(R.color.colorPrimary));
         ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
-                .setHintTextColor(Color.LTGRAY);
+                .setHintTextColor(getResources().getColor(R.color.colorHint));
         ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
                 .setTypeface(font);
+        ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
+                .setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         ((ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn))
                 .setColorFilter(ContextCompat
                         .getColor(MainActivity.this, R.color.colorVine), PorterDuff.Mode.SRC_IN);
+        searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn)
+                .setOnClickListener(this);
+        ((ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon))
+                .setImageDrawable(null);
 
         /*** Inicialización de Spinner de servicios ***/
         spinner = (Spinner) findViewById(R.id.sp_service);
@@ -106,6 +121,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.search_close_btn:
+                cancelTask();
+                break;
+        }
+    }
+
+    @Override
     public boolean onQueryTextSubmit(String query) {
         return true;
     }
@@ -113,20 +137,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextChange(String newText) {
         if (newText.length() > 0) {
-
             selectSuggestionsService(newText);
-
         }
         return true;
     }
 
     @Override
     public boolean onSuggestionSelect(int position) {
-        /*Cursor cursor = (Cursor) searchView.getSuggestionsAdapter().getItem(position);
-        String suggestion = cursor.getString(2);
-        searchView.setQuery(suggestion, false);
-        searchView.clearFocus();
-        Log.e("fgfgkh", "onSuggestionSelect");*/
         return true;
     }
 
@@ -145,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String opt = ((TextView) view).getText().toString();
+
+        cancelTask();
 
         if (opt.equals("Movies")) {
             appState = ServiceState.MOVIES;
@@ -177,7 +196,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 params.put("searchViewAdapter", searchViewAdapter);
                 params.put("handleActivity", this);
 
-                new MovieService(params).execute(newText);
+                movieService = new MovieService(params);
+                movieService.execute(newText);
 
                 break;
             case ACTORS:
@@ -185,7 +205,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 params.put("searchViewAdapter", searchViewAdapter);
                 params.put("handleActivity", this);
 
-                new ActorService(params).execute(newText);
+                actorService = new ActorService(params);
+                actorService.execute(newText);
 
                 break;
             case DIRECTORS:
@@ -193,7 +214,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 params.put("searchViewAdapter", searchViewAdapter);
                 params.put("handleActivity", this);
 
-                new DirectorService(params).execute(newText);
+                directorService = new DirectorService(params);
+                directorService.execute(newText);
 
                 break;
         }
@@ -208,7 +230,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 params.put("searchViewAdapter", searchViewAdapter);
                 params.put("handleActivity", this);
 
-                new MovieService(params).execute(text);
+                movieService = new MovieService(params);
+                movieService.execute(text);
 
                 break;
             case ACTORS:
@@ -216,7 +239,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 params.put("searchViewAdapter", searchViewAdapter);
                 params.put("handleActivity", this);
 
-                new ActorService(params).execute(text);
+                actorService = new ActorService(params);
+                actorService.execute(text);
 
                 break;
             case DIRECTORS:
@@ -224,10 +248,23 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 params.put("searchViewAdapter", searchViewAdapter);
                 params.put("handleActivity", this);
 
-                new DirectorService(params).execute(text);
+                directorService = new DirectorService(params);
+                directorService.execute(text);
 
                 break;
         }
 
+    }
+
+    private void cancelTask() {
+        ((EditText) searchView.findViewById(
+                android.support.v7.appcompat.R.id.search_src_text)).setText("");
+        ((AVLoadingIndicatorView) findViewById(R.id.avi_loading)).hide();
+        if (movieService != null)
+            movieService.cancel(true);
+        if (actorService != null)
+            actorService.cancel(true);
+        if (directorService != null)
+            directorService.cancel(true);
     }
 }

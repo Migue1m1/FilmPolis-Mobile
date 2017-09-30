@@ -21,4 +21,6 @@
     <string name="sub_deathday">death day</string>
     <string name="sub_birthplace">birth place</string>
     <string name="sub_gender">gender</string>
+
+    <string name="NO_INTERNET">there isn\'t Internet connection!</string>
 </resources>
