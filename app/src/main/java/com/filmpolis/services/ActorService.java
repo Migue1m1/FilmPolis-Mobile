@@ -8,6 +8,7 @@ import com.filmpolis.R;
 import com.filmpolis.adapters.SuggestionsAdapter;
 import com.filmpolis.models.Actor;
 import com.filmpolis.models.Suggestion;
+import com.filmpolis.singleton.ViewSnackBar;
 import com.filmpolis.utils.ActorServiceType;
 import com.filmpolis.utils.HttpStatusCode;
 import com.filmpolis.utils.Utils;
@@ -32,9 +33,9 @@ import java.util.List;
  */
 
 public class ActorService extends AsyncTask<String, Void, String> {
-    private static final String URL_ACTOR_SERVICE_SUGGESTIONS =
+    public static String URL_ACTOR_SERVICE_SUGGESTIONS =
             Utils.URL_API_ACTORS + "/suggestions/";
-    private static final String URL_ACTOR_SERVICE_BY_NAME = Utils.URL_API_ACTORS + "/";
+    public static String URL_ACTOR_SERVICE_BY_NAME = Utils.URL_API_ACTORS + "/";
     private ActorServiceType option;
     private SuggestionsAdapter searchViewAdapter;
     private List<Suggestion> actorSuggestions;
@@ -43,7 +44,9 @@ public class ActorService extends AsyncTask<String, Void, String> {
     private HttpResponse response;
     private Activity activity;
     private AVLoadingIndicatorView progressLoading;
+    private final ViewSnackBar viewSnackBar = ViewSnackBar.getInstance();
     private Actor actor;
+    private boolean err;
 
     public ActorService (HashMap<String, Object> params) {
         activity = (Activity) params.get("handleActivity");
@@ -85,18 +88,25 @@ public class ActorService extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        switch (option) {
-            case GET_SUGGESTIONS:
-                searchViewAdapter.changeCursor(Utils.jsonToCursor(actorSuggestions));
-                break;
-            case GET_BY_NAME:
-                progressLoading.hide();
-                Utils.changueActivity(activity, "Actor", actor);
-                break;
-            case GET_BY_IMDB:
-                break;
-            case ADD_ACTOR:
-                break;
+        if (err) {
+            Utils.hideSoftKeyBoard(activity);
+            viewSnackBar.viewSnackBar(activity.findViewById(R.id.searchView),
+                    activity.getResources().getString(R.string.CANNOT_CONNECT));
+        }
+        else {
+            switch (option) {
+                case GET_SUGGESTIONS:
+                    searchViewAdapter.changeCursor(Utils.jsonToCursor(actorSuggestions));
+                    break;
+                case GET_BY_NAME:
+                    progressLoading.hide();
+                    Utils.changueActivity(activity, "Actor", actor);
+                    break;
+                case GET_BY_IMDB:
+                    break;
+                case ADD_ACTOR:
+                    break;
+            }
         }
     }
 
@@ -126,6 +136,7 @@ public class ActorService extends AsyncTask<String, Void, String> {
                 }
             }
         } catch (Exception e) {
+            err = true;
             Log.e("Error: ", e.getMessage());
         }
     }
@@ -152,6 +163,7 @@ public class ActorService extends AsyncTask<String, Void, String> {
                 }
             }
         } catch (Exception e) {
+            err = true;
             Log.e("Error: ", e.getMessage());
         }
     }

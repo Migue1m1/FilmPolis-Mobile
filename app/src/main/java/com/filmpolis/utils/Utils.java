@@ -12,6 +12,9 @@ import com.filmpolis.models.Actor;
 import com.filmpolis.models.Director;
 import com.filmpolis.models.Movie;
 import com.filmpolis.models.Suggestion;
+import com.filmpolis.services.ActorService;
+import com.filmpolis.services.DirectorService;
+import com.filmpolis.services.MovieService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,9 +35,10 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class Utils {
     public static final String[] SUGGESTIONS_COLUMS = new String[]{"_id", "icon", "suggestion"};
 
-    public static final String URL_API_ACTORS = "http://192.168.0.106:9090/api-gateway/actors";
-    public static final String URL_API_MOVIES = "http://192.168.0.106:9090/api-gateway/movies";
-    public static final String URL_API_DIRECTORS = "http://192.168.0.106:9090/api-gateway/directors";
+    public static String URL_SERVICE_DOMAIN = "http://192.168.0.109:9090";
+    public static String URL_API_ACTORS = URL_SERVICE_DOMAIN + "/api-gateway/actors";
+    public static String URL_API_MOVIES = URL_SERVICE_DOMAIN + "/api-gateway/movies";
+    public static String URL_API_DIRECTORS = URL_SERVICE_DOMAIN + "/api-gateway/directors";
 
     public static final String[] FONTPATH =
             {  "fonts/ZonaPro-Thin.ttf", "fonts/ZonaPro-Bold.ttf" };
@@ -137,6 +141,24 @@ public class Utils {
             o = actor;
         }
         return o;
+    }
+
+    public static void updateServicesURLS() {
+        URL_API_ACTORS = URL_SERVICE_DOMAIN + "/api-gateway/actors";
+        URL_API_MOVIES = URL_SERVICE_DOMAIN + "/api-gateway/movies";
+        URL_API_DIRECTORS = URL_SERVICE_DOMAIN + "/api-gateway/directors";
+
+        ActorService.URL_ACTOR_SERVICE_SUGGESTIONS =
+                URL_API_ACTORS + "/suggestions/";
+        DirectorService.URL_DIRECTOR_SERVICE_SUGGESTIONS =
+                URL_API_DIRECTORS + "/suggestions/";
+        MovieService.URL_MOVIE_SERVICE_SUGGESTIONS =
+                URL_API_MOVIES + "/suggestions/";
+
+        ActorService.URL_ACTOR_SERVICE_BY_NAME = URL_API_ACTORS + "/";
+        DirectorService.URL_DIRECTOR_SERVICE_BY_NAME = URL_API_DIRECTORS + "/";
+        MovieService.URL_MOVIE_SERVICE_BY_TITLE = URL_API_MOVIES + "/";
+
     }
 
     private static String calcAge (String str1, String str2) throws ParseException {

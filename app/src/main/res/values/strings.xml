@@ -22,5 +22,5 @@
     <string name="sub_birthplace">birth place</string>
     <string name="sub_gender">gender</string>
 
-    <string name="NO_INTERNET">there isn\'t Internet connection!</string>
+    <string name="CANNOT_CONNECT">can\'t connect!</string>
 </resources>

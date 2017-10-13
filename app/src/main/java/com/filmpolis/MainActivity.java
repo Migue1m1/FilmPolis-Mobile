@@ -1,15 +1,16 @@
 package com.filmpolis;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
-import android.graphics.Color;
+import android.database.MatrixCursor;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -118,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setDropDownViewResource(R.layout.services_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        findViewById(R.id.btn_network_settings).setOnClickListener(this);
     }
 
     @Override
@@ -125,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.search_close_btn:
                 cancelTask();
+                break;
+            case R.id.btn_network_settings:
+                networkSettingAlertDialog();
                 break;
         }
     }
@@ -266,5 +272,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             actorService.cancel(true);
         if (directorService != null)
             directorService.cancel(true);
+    }
+
+    private void networkSettingAlertDialog() {
+        final EditText taskEditText = new EditText(this);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Update service domain")
+                .setMessage("Actual: " + Utils.URL_SERVICE_DOMAIN)
+                .setView(taskEditText)
+                .setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        searchViewAdapter.changeCursor(new MatrixCursor(Utils.SUGGESTIONS_COLUMS));
+                        Utils.URL_SERVICE_DOMAIN = taskEditText.getText().toString();
+                        Utils.updateServicesURLS();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
     }
 }

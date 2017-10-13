@@ -34,9 +34,9 @@ import com.wang.avi.AVLoadingIndicatorView;
  */
 
 public class MovieService extends AsyncTask<String, Void, String> {
-    private static final String URL_MOVIE_SERVICE_SUGGESTIONS =
+    public static String URL_MOVIE_SERVICE_SUGGESTIONS =
             Utils.URL_API_MOVIES + "/suggestions/";
-    private static final String URL_MOVIE_SERVICE_BY_TITLE = Utils.URL_API_MOVIES + "/";
+    public static String URL_MOVIE_SERVICE_BY_TITLE = Utils.URL_API_MOVIES + "/";
     private MovieServiceType option;
     private SuggestionsAdapter searchViewAdapter;
     private List<Suggestion> movieSuggestions;
@@ -92,7 +92,7 @@ public class MovieService extends AsyncTask<String, Void, String> {
         if (err) {
             Utils.hideSoftKeyBoard(activity);
             viewSnackBar.viewSnackBar(activity.findViewById(R.id.searchView),
-                    activity.getResources().getString(R.string.NO_INTERNET));
+                    activity.getResources().getString(R.string.CANNOT_CONNECT));
         }
         else
             switch (option) {
