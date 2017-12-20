@@ -12,7 +12,7 @@ Clone this project:
 git clone https://github.com/Migue1m1/FilmPolis-Mobile.git
 ```
 
-### Prerequisites
+## Prerequisites
 
 You need to install:
 
@@ -20,9 +20,18 @@ You need to install:
 * [JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [JRE](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
 
-### Installing
+## Installing
 
 Compile or get an APK. Run in your Phone or a virtual device.
+
+## App
+
+**Search with Suggestions**
+<img align="left" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-movie.png">
+<img align="right" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-actor.png">
+**Details**
+<img align="left" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/director-detail.png">
+<img align="right" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/movie-detail.png">
 
 ## Authors
 
