@@ -27,12 +27,11 @@ Compile or get an APK. Run in your Phone or a virtual device.
 ## App
 
 **Search with Suggestions**
-![src mv](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-movie.png)
-![src atr](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-actor.png)
+![alt-text-1](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-movie.png)![alt-text-2](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-actor.png)
 
 **Details**
-![drt dtl](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/director-detail.png)
-![mv dtl](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/movie-detail.png)
+![alt-text-3](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/director-detail.png)
+![alt-text-4](https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/movie-detail.png)
 
 ## Authors
 
