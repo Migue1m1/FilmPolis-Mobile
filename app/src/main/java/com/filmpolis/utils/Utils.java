@@ -35,7 +35,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class Utils {
     public static final String[] SUGGESTIONS_COLUMS = new String[]{"_id", "icon", "suggestion"};
 
-    public static String URL_SERVICE_DOMAIN = "http://192.168.0.109:9090";
+    public static String URL_SERVICE_DOMAIN = "https://filmpolis-api.herokuapp.com";
     public static String URL_API_ACTORS = URL_SERVICE_DOMAIN + "/api-gateway/actors";
     public static String URL_API_MOVIES = URL_SERVICE_DOMAIN + "/api-gateway/movies";
     public static String URL_API_DIRECTORS = URL_SERVICE_DOMAIN + "/api-gateway/directors";
