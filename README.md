@@ -29,9 +29,14 @@ Compile or get an APK. Run in your Phone or a virtual device.
 **Search with Suggestions**
 <img align="left" width="280" height="500" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-movie.png">
 <img align="right" width="280" height="500" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/search-actor.png">
+
+<br/>
+
 **Details**
 <img align="left" width="280" height="500" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/director-detail.png">
 <img align="right" width="280" height="500" style="margin:0px 15px 0px 0px" src="https://github.com/Migue1m1/FilmPolis-Mobile/blob/master/app/src/main/assets/imgs/movie-detail.png">
+
+<br/>
 
 ## Authors
 
