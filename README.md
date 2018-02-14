@@ -2,7 +2,7 @@
 
 FilmPolis' is an application to obtain information about films,
 actors and directors of the so precious 7th Art.
-There is a total of 12k+ movies, 12k+ actors and 6k+ directors to consult.
+There is a total of 12k+ movies, 49k+ actors and 6k+ directors to consult.
 
 ## Getting Started
 

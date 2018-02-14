@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">FilmPolis</string>
+
+    <!-- AdMob ad unit IDs -->
+    <string name="id_app">ca-app-pub-1131721560634431~1147220512</string>
+    <string name="id_banner">ca-app-pub-1131721560634431/6016403817</string>
+
     <string name="hint_search_movie">Type a title...</string>
     <string name="hint_search_actor">Type a name...</string>
     <string name="hint_search_director">Type a name...</string>

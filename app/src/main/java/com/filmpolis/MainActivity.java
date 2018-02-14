@@ -29,7 +29,11 @@ import com.filmpolis.utils.DirectorServiceType;
 import com.filmpolis.utils.MovieServiceType;
 import com.filmpolis.utils.ServiceState;
 import com.filmpolis.utils.Utils;
+import com.google.android.gms.ads.MobileAds;
 import com.wang.avi.AVLoadingIndicatorView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.HashMap;
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MovieService movieService;
     private ActorService actorService;
     private DirectorService directorService;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         movieService = null;
         actorService = null;
         directorService = null;
+
+        initAds();
     }
 
     private void initGUI() {
@@ -121,6 +128,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinner.setOnItemSelectedListener(this);
 
         findViewById(R.id.btn_network_settings).setOnClickListener(this);
+    }
+
+    private void initAds() {
+        MobileAds.initialize(this, getResources().getString(R.string.id_app));
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override

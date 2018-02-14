@@ -13,6 +13,9 @@ import com.filmpolis.fragments.ActorFragment;
 import com.filmpolis.fragments.DirectorFragment;
 import com.filmpolis.fragments.MovieFragment;
 import com.filmpolis.utils.Utils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 /**
  * Created by Miguel on 22/09/2017.
@@ -21,6 +24,7 @@ import com.filmpolis.utils.Utils;
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
     private String type;
     private Typeface font;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         type = getIntent().getExtras().getString("type");
 
         initGUI();
+        initAds();
 
         if (type.equals("Movie"))
            loadMovieDetails();
@@ -55,6 +60,14 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         ((TextView) findViewById(R.id.tv_info_bar)).setText(type);
 
         findViewById(R.id.img_back).setOnClickListener(this);
+    }
+
+    private void initAds() {
+        MobileAds.initialize(this, getResources().getString(R.string.id_app));
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     private void loadMovieDetails() {
